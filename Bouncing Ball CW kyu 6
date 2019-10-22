@@ -1,0 +1,60 @@
+A child is playing with a ball on the nth floor of a tall building. The height of this floor, h, is known.
+
+He drops the ball out of the window. The ball bounces (for example), to two-thirds of its height (a bounce of 0.66).
+
+His mother looks out of a window 1.5 meters from the ground.
+
+How many times will the mother see the ball pass in front of her window (including when it's falling and bouncing?
+
+Three conditions must be met for a valid experiment:
+Float parameter "h" in meters must be greater than 0
+Float parameter "bounce" must be greater than 0 and less than 1
+Float parameter "window" must be less than h.
+If all three conditions above are fulfilled, return a positive integer, otherwise return -1.
+
+Note:
+The ball can only be seen if the height of the rebounding ball is strictly greater than the window parameter.
+
+Example:
+- h = 3, bounce = 0.66, window = 1.5, result is 3
+
+- h = 3, bounce = 1, window = 1.5, result is -1
+
+(Condition 2) not fulfilled).
+
+
+
+function bouncingBall(h,  bounce,  window) {
+// @parameters
+// h is height of the nth floor (number)
+// bounce is how many times the ball bounces out of the window (number)
+// window is 1.5 meters off the ground, how many times the mother sees the ball from this window(number)
+// @returns
+// sum how many times the ball bouncing in front of the mothers window (number)
+// if 3 conditions are met return positive integer if not return -1
+// @examples
+// bouncingBall(12,.50, 3) => 4
+// bouncingBall(10,.20 ,5 ) => 1
+// bouncingBall(20,.33 ,8) => 1
+// bouncingBall(15,.25 , 3) => 3
+// bouncingBall(3,.125 , 2) => 1
+// bouncingBall(19,.90 ,4) => 9
+// bouncingBall(-1,3,2) => -1
+// @pseudo code
+// if h is less than 0 return  -1
+// if bounce isnt between 0 and 1 return -1
+// if window isnt less than h return -1
+// while loop to count bounces because we don't know how many times we want to run this function
+ var count=0;
+ if(h>0 && bounce>0 && bounce<1 && window<h){
+    count=1;
+  }else{
+    return -1;
+  }
+  h=h*bounce;
+  while(h>window){
+    count+=2;
+    h=h*bounce;
+  }
+  return count;
+}
